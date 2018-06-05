@@ -21,13 +21,15 @@ with gzip.open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
   words = f.read().decode().split()
 _wordcost = dict((k, log((i+1)*log(len(words)))) for i, k in enumerate(words))
 _maxword = max(len(x) for x in words)
-_SPLIT_RE = re.compile("[^a-zA-Z0-9]+")
-
+_SPLIT_RE = {
+    'en_US': re.compile("[^a-zA-Z0-9]+"),
+    'pt_BR': re.compile("[^a-zA-Z0-9À-ÿ]+")
+}
 
 def split(s):
   """Uses dynamic programming to infer the location of
   spaces in a string without spaces."""
-  l = [_split(x) for x in _SPLIT_RE.split(s)]
+  l = [_split(x) for x in _SPLIT_RE.get(_DEFAULT_LANG).split(s)]
   return [item for sublist in l for item in sublist]
 
 
