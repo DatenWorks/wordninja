@@ -5,9 +5,6 @@ import itertools
 from math import log
 
 
-__version__ = '0.1.3'
-
-
 # I did not author this code, only tweaked it from:
 # http://stackoverflow.com/a/11642687/2449774
 # Thanks Generic Human!
@@ -21,7 +18,7 @@ with gzip.open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
                             _DEFAULT_LANG,
                             'wordninja_words.txt.gz')) as f:
     words = f.read().decode().split()
-__LOG_TOTAL=log(len(words))
+__LOG_TOTAL = log(len(words))
 _wordcost = dict((k, log((i+1)*__LOG_TOTAL)) for i, k in enumerate(words))
 _maxword = max(len(x) for x in words)
 _SPLIT_RE = {
