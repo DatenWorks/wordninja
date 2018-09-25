@@ -12,39 +12,44 @@ Usage
 ```
 $ python
 >>> import wordninja
->>> wordninja.split('derekanderson')
-['derek', 'anderson']
+>>> wordninja.split('somewords')
+['some', 'words']
 >>> wordninja.split('imateapot')
 ['im', 'a', 'teapot']
->>> wordninja.split('heshotwhointhewhatnow')
-['he', 'shot', 'who', 'in', 'the', 'what', 'now']
 >>> wordninja.split('thequickbrownfoxjumpsoverthelazydog')
 ['the', 'quick', 'brown', 'fox', 'jumps', 'over', 'the', 'lazy', 'dog']
 ```
 
 Performance
 -----------
-It's super fast!
+It's even faster!
 
 ```
 >>> def f():
 ...   wordninja.split('imateapot')
 ... 
 >>> timeit.timeit(f, number=10000)
-0.40885152100236155
+0.14521459000236155
 ```
 
 It can handle long strings:
 ```
->>> wordninja.split('wethepeopleoftheunitedstatesinordertoformamoreperfectunionestablishjusticeinsuredomestictranquilityprovideforthecommondefencepromotethegeneralwelfareandsecuretheblessingsoflibertytoourselvesandourposteritydoordainandestablishthisconstitutionfortheunitedstatesofamerica')
-['we', 'the', 'people', 'of', 'the', 'united', 'states', 'in', 'order', 'to', 'form', 'a', 'more', 'perfect', 'union', 'establish', 'justice', 'in', 'sure', 'domestic', 'tranquility', 'provide', 'for', 'the', 'common', 'defence', 'promote', 'the', 'general', 'welfare', 'and', 'secure', 'the', 'blessings', 'of', 'liberty', 'to', 'ourselves', 'and', 'our', 'posterity', 'do', 'ordain', 'and', 'establish', 'this', 'constitution', 'for', 'the', 'united', 'states', 'of', 'america']
+>>>> hamlet_act3_scene1="ThatunmatchedformandfeatureofblownyouthBlastedwithecstasy.Oh,woeisme,T'haveseenwhatIhaveseen,seewhatIsee!".lower()
+>>>> wordninja.split(hamlet_act3_scene1)
+['that', 'unmatched', 'form', 'and', 'feature', 'of', 'blown', 'youth', 'blasted', 'with', 'ecstasy', 'oh', 'woe', 'is', 'me', 't', 'have', 'seen', 'what', 'i', 'have', 'seen', 'see', 'what', 'i', 'see']
+>>>>
+>>>> def f():
+....     wordninja.split(hamlet_act3_scene1)
+....
+>>>> timeit.timeit(f, number=1)
+0.005466152999360929
 ```
-And scales well.  (This string takes ~7ms to compute.) 
+And scales well.  (This string took ~5ms to compute.)
 
 How to Install
 --------------
 
 ```
-pip3 install wordninja
+pip install -e git+https://github.com/macunha1/wordninja#egg=wordninja
 ```
 

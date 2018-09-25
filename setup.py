@@ -8,13 +8,13 @@ for scheme in INSTALL_SCHEMES.values():
 
 __supported_langs = ['en_US', 'pt_BR']
 setup(name='wordninja',
-      version='0.2.1',
+      version='0.3.1',
       description="""Probabilistically split concatenated words using NLP
-                     based on Wikipedia uni-gram frequencies.""",
-      author='Derek Anderson',
-      author_email='public@kered.org',
+                     based uni-gram frequencies.""",
+      author='Matheus Cunha',
+      author_email='matheus.cunha@archlinux.com.br',
       packages=['wordninja'],
-      url='https://github.com/keredson/wordninja',
+      url='https://github.com/macunha1/wordninja',
       package_data={'wordninja': [
           '%s/wordninja_words.txt.gz' % lang for lang in __supported_langs]},
       package_dir={'wordninja': 'wordninja'},

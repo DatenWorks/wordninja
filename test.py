@@ -5,8 +5,8 @@ import wordninja
 class TestWordNinja(unittest.TestCase):
 
     def test_simple(self):
-        self.assertEqual(list(wordninja.split('derekanderson')),
-                         ['derek', 'anderson'])
+        self.assertEqual(list(wordninja.split('somewords')),
+                         ['some', 'words'])
 
     def test_with_more_words(self):
         self.assertEqual(list(wordninja.split('somebiggergroupofwords')),
@@ -25,14 +25,14 @@ class TestWordNinja(unittest.TestCase):
         self.assertListEqual(wordninja.split(act3_scene1), __expected)
 
     def test_with_underscores_etc(self):
-        self.assertEqual(list(wordninja.split('derek anderson')),
-                         ['derek', 'anderson'])
-        self.assertEqual(list(wordninja.split('derek-anderson')),
-                         ['derek', 'anderson'])
-        self.assertEqual(list(wordninja.split('derek_anderson')),
-                         ['derek', 'anderson'])
-        self.assertEqual(list(wordninja.split('derek/anderson')),
-                         ['derek', 'anderson'])
+        self.assertEqual(list(wordninja.split('separated with space')),
+                         ['separated', 'with', 'space'])
+        self.assertEqual(list(wordninja.split('separated-with-dash')),
+                         ['separated', 'with', 'dash'])
+        self.assertEqual(list(wordninja.split('separated_with_underscore')),
+                         ['separated', 'with', 'underscore'])
+        self.assertEqual(list(wordninja.split('separated/with/slash')),
+                         ['separated', 'with', 'slash'])
 
 
 if __name__ == '__main__':
