@@ -12,6 +12,7 @@ from math import log
 
 
 _DEFAULT_LANG = os.getenv("WORDNINJA_LANG") or "en_US"
+_CUSTOM_SPLIT_RE = os.getenv("SPLIT_REGEX_" + _DEFAULT_LANG.upper())
 # Build a cost dictionary
 # assuming Zipf's law and cost = -math.log(probability).
 with gzip.open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -22,20 +23,23 @@ with gzip.open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
 __LOG_TOTAL = log(len(words))
 _wordcost = dict((k, log((i+1)*__LOG_TOTAL)) for i, k in enumerate(words))
 _maxword = max(len(x) for x in words)
-_SPLIT_RE = {
-    'en_US': re.compile("[^a-zA-Z0-9]+"),
-    'pt_BR': re.compile("[^a-zA-Z0-9À-ÿ]+")
+__SPLIT_RE = {
+    'en_US': "[^a-zA-Z0-9]+",
+    'pt_BR': "[^a-zA-Z0-9À-ÿ]+"
 }
+_split_regex = re.compile(_CUSTOM_SPLIT_RE) \
+    if _CUSTOM_SPLIT_RE else re.compile(__SPLIT_RE.get(_DEFAULT_LANG))
 
 
-def split(s):
+def split(s, re=None):
     """Uses dynamic programming to infer the location of
     spaces in a string without spaces."""
+    __split_regex = re or _split_regex
     return list(itertools.chain.from_iterable(
         itertools.repeat(item, 1)
         if isinstance(item, str)
         else item for item in map(_split,
-                                  _SPLIT_RE.get(_DEFAULT_LANG).split(s))))
+                                  __split_regex.split(s))))
 
 
 def _split(s):
