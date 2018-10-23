@@ -1,6 +1,6 @@
 ![image](https://user-images.githubusercontent.com/2049665/29219793-b4dcb942-7e7e-11e7-8785-761b0e784e04.png)
 
-Word Ninja [![CircleCI](https://circleci.com/gh/macunha1/wordninja.svg?style=svg)](https://circleci.com/gh/macunha1/wordninja)
+Word Ninja [![CircleCI](https://circleci.com/gh/macunha1/wordninja.svg?style=svg)](https://circleci.com/gh/macunha1/wordninja) [![codecov](https://codecov.io/gh/macunha1/wordninja/branch/master/graph/badge.svg)](https://codecov.io/gh/macunha1/wordninja)
 ==========
 
 Slice your munged together words!  Seriously, Take anything, `'imateapot'` for example, would become `['im', 'a', 'teapot']`.  Useful for humanizing stuff (like database tables when people don't like underscores).

@@ -1,33 +1,30 @@
 version: 2
 
+defaults: &defaults
+  steps:
+    - checkout
+    - run: |
+        pip install codecov
+        coverage run test.py
+        codecov
+
 jobs:
   test-against-pypy2:
     docker:
       - image: pypy:2-6.0-slim
-    steps:
-      - checkout
-      - run: pypy test.py
-
+    <<: *defaults
   test-against-pypy3:
     docker:
       - image: pypy:3-6.0-slim
-    steps:
-      - checkout
-      - run: pypy3 test.py
-
+    <<: *defaults
   test-against-python2:
     docker:
       - image: python:2.7.15-slim-stretch
-    steps:
-      - checkout
-      - run: python test.py
-
+    <<: *defaults
   test-against-python3:
     docker:
       - image: python:3.7-alpine3.8
-    steps:
-      - checkout
-      - run: python3 test.py
+    <<: *defaults
 
 workflows:
   version: 2
